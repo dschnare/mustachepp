@@ -7,7 +7,7 @@
     "email": "schnare.d@gmail.com"
   },
   "main": "./mustchepp.js",
-  "dependencies": {    
-    "mustache": "*"
+  "devDependencies": {    
+    "mustache": "0.7.2"
   }
 }
