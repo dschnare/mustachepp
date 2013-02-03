@@ -292,6 +292,42 @@ Where `helper` is a function with the following signature:
     text - The section text.
     render - A render function that is bound to the current context that can be passed text to render.
 
+Example:
+
+    Mustache.registerHelper('with', function (path, text, render) {
+      var ctx, parts, value, value, result;
+
+      // If there was no path specified then we 
+      // just render as usual (i.e. {{#with}}).
+      if (!path) return render(text);
+
+      // The 'this' object is the current 'view' not the context,
+      // so we have to get the context that has the current view.
+      // Then we lookup the path's value from the context.
+
+      result = '';
+      ctx = Mustache.Context.withView(this);
+      value = ctx.lookup(path);
+
+      // If the value is 'undefined' or 'null' then we return 
+      // the empty string. Otherwise we recursively
+      // call 'Mustache.render()' with a context that has been
+      // pushed onto the stack with its view set to the value
+      // of the path.
+
+      // NOTE: We don't use the 'render' argument because it
+      // will only render from the current context and we
+      // can't change it.
+
+      if (value === undefined || value === null) {
+        result = '';
+      } else {
+        result = Mustache.render(text, ctx.push(value));
+      }
+
+      return result;
+    });
+
 **Mustache.aliasHelper()**
 
 Creates an alias for a helper, making the helper available under multiple names. The helper being aliased does not have to exist before aliasing.
