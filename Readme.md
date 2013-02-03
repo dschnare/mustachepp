@@ -15,6 +15,7 @@ Next, learn the extensions. Mustache++ provides several extensions to Mustache i
 You can prefix your property paths with `:` to move down one context.
   
 *the template*
+
     {{#father.son}}
       {{#friend}}
         <p>{{:name}}'s friend is {{name}}</p>
@@ -22,6 +23,7 @@ You can prefix your property paths with `:` to move down one context.
     {{/father.son}}
 
 *the view*
+
     {
       father: {
         name: 'Raymond',
@@ -35,12 +37,14 @@ You can prefix your property paths with `:` to move down one context.
     }
 
 *the output*
+
     <p>Eric's friend is Alex</p>
 
 
 Having more than one `:` character will move that many contexts down the context stack.
 
 *the template*
+
     {{#father}}
       {{#son}}
         {{#friend}}
@@ -50,6 +54,7 @@ Having more than one `:` character will move that many contexts down the context
     {{/father}}
 
 *the view*
+
     {
       father: {
         name: 'Raymond',
@@ -63,11 +68,13 @@ Having more than one `:` character will move that many contexts down the context
     }
 
 *the output*
+
     <p>Eric's friend is Alex and his father is Raymond</p>
 
 Prefixing your property path with `~` will move down to the root context.
 
 *the template*
+
     {{#father}}
       {{#son}}
         {{#friend}}
@@ -77,6 +84,7 @@ Prefixing your property path with `~` will move down to the root context.
     {{/father}}
 
 *the view*
+
     {
       father: {
         name: 'Raymond',
@@ -90,6 +98,7 @@ Prefixing your property path with `~` will move down to the root context.
     }
 
 *the output*
+
     <p>Eric's friend is Alex and his father is Raymond</p>
 
 
@@ -103,11 +112,13 @@ Similar to Handlebars.js block helpers, section helpers offer a way for you to a
 The `#with` will render its section text in the context of the specified path.
 
 *the template*
+
     {{#with options}}
       The mode is {{mode}}.
     {{/with}}
 
 *the view*
+
     {
       options: {
         mode: "prod"
@@ -115,21 +126,25 @@ The `#with` will render its section text in the context of the specified path.
     }
 
 *the output*
+
     The mode is prod.
 
 Note that the `#with` section will not iterate over the items of an `Array` if its path specifies an `Array`.
 
 *the template*
+
     {{#with array}}
       The result: {{.}}
     {{/with}}
 
 *the view*
+
     {
       numbers: [1, 2, 3, 4, 5]
     }
 
 *the output*
+
     The result: 1,2,3,4,5
 
 
@@ -141,22 +156,27 @@ The `#each` helper will iterate over the items in an `Array` or the keys in an o
 For convenience several `private` properties are available when rendering a value they are `@index`, `@key` and `@value`. The `@index` and `@key` are set to the same value, that being the index or key currently being visited. The `@value` property is set to the value currently being rendered. The `@value` property can be used in place of `{{.}}` or to construct more explicit paths like `{{@value.someprop}}` instead of `{{someprop}}`.
 
 *the template*
+
     {{#each numbers}}{{@index}}:{{.}} {{/each}}
 
 *the view*
+
     {
       numbers: [1, 2, 3, 4, 5]
     }
 
 *the output*
+
     0:1 1:2 2:3 3:4 4:5 
 
 Here's an example of iterating over the keys of an object.
 
 *the template*
+
     {{#each options}}{{@key}}="{{@value}}"\n{{/each}}
 
 *the view*
+
     {
       options: {
         mode: "debug",
@@ -165,6 +185,7 @@ Here's an example of iterating over the keys of an object.
     }
 
 *the output*
+
     mode="debug"
     margins="10px 15px 5px 5px"
 
@@ -179,6 +200,7 @@ The `#if` helper will render its section text only if its expression is truthy. 
 - Cannot contain functino calls: identifier() identifier(args)
 
 *the template*
+
     {{#if numbers.length}}
       <h1>Numbers</h1>
       {{#each numbers}}{{@value}} {{/each}}    
@@ -190,11 +212,13 @@ The `#if` helper will render its section text only if its expression is truthy. 
     {{/if}}
 
 *the view*
+
     {
       numbers: [1, 2, 3, 4, 5]
     }
 
 *the output*
+
     <h1>Numbers</h1>
     1 2 3 4 5
 
@@ -212,6 +236,7 @@ The `#unless` helper will render its section text only if its expression is fals
 - Cannot contain functino calls: identifier() identifier(args)
 
 *the template*
+
     {{#unless numbers.length === 0}}
       <h1>Numbers</h1>
       {{#each numbers}}{{@value}} {{/each}} 
@@ -223,11 +248,13 @@ The `#unless` helper will render its section text only if its expression is fals
     {{/unless}}
 
 *the view*
+
     {
       numbers: [1, 2, 3, 4, 5]
     }
 
 *the output*
+
     <h1>Numbers</h1>
     1 2 3 4 5
 
@@ -301,6 +328,7 @@ Where `fn` is the new function with the following signature:
     ... - The arguments passed to the function when called.
 
 Example:  
+
     var o = {
       message: function () {
         return 'hello';
