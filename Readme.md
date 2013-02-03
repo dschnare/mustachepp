@@ -299,6 +299,7 @@ Example:
 
       // If there was no path specified then we 
       // just render as usual (i.e. {{#with}}).
+      
       if (!path) return render(text);
 
       // The 'this' object is the current 'view' not the context,
