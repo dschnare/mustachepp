@@ -8,6 +8,7 @@
   },
   "main": "./mustchepp.js",
   "devDependencies": {    
-    "mustache": "0.7.2"
+    "mustache": "0.7.2",
+    "uglify-js": "*"
   }
 }
