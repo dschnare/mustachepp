@@ -272,16 +272,24 @@
         };
       },
       create: function (o) {
-        var F = function () {};        
+        var F, type;
 
-        if (o === undefined || o === null) o = {};       
+        F = function () {}; 
+        type = typeof o;    
+
+        if (o === undefined || o === null) o = {};    
+
         // o is a literal.
-        if (/number|boolean|string/.test(typeof o)) {          
-          o = (function (v) {
-            return {
-              toString: function () { return v + ''; }              
-            };
-          }(o));
+        switch (type) {
+          case 'string':
+            o = new String(o);
+            break;
+          case 'number':
+            o = new Number(o);
+            break;
+          case 'boolean':
+            o = new Boolean(o);
+            break;
         }
         
         F.prototype = o;

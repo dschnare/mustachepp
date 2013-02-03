@@ -151,9 +151,9 @@ Note that the `#with` section helper will not iterate over the items of an `Arra
 
 ### {{#each path}}
 
-The `#each` helper will iterate over the items in an `Array` or the keys in an object and render its section text for each value, similar to normal Mustache sections. Each value rendered will be pushed onto the context stack as usual.
+The `#each` helper will iterate over the items in an `Array` or the keys in an object and render its section text for each value similar to normal Mustache sections. Each value rendered will be pushed onto the context stack as usual.
 
-For convenience several `private` properties are available when rendering a value they are `@index`, `@key` and `@value`. The `@index` and `@key` are set to the same value, that being the index or key currently being visited. The `@value` property is set to the value currently being rendered. The `@value` property can be used in place of `{{.}}` or to construct more explicit paths like `{{@value.someprop}}` instead of `{{someprop}}`.
+For convenience, several `private` properties are available when rendering a value, namely `@index`, `@key` and `@value`. The `@index` and `@key` properties are set to the same value, that being the index or key currently being visited. The `@value` property is set to the value currently being rendered. The `@value` property can be used in place of `{{.}}` or to construct more explicit paths like `{{@value.someprop}}` instead of `{{someprop}}`.
 
 *the template*
 
@@ -196,8 +196,8 @@ Here's an example of iterating over the keys of an object.
 The `#if` helper will render its section text only if its expression is truthy. An expression has the following restrictions:
 
 - Cannot contain the following characters: `[]{}`
-- Cannot contain assignment statements: = += -= *= /= |= &= ++ --
-- Cannot contain functino calls: identifier() identifier(args)
+- Cannot contain assignment statements: `= += -= *= /= |= &= ++ --`
+- Cannot contain function calls: `identifier()` or `identifier(arg, arg, ...)`
 
 *the template*
 
@@ -232,8 +232,8 @@ The `#if` helper will render its section text only if its expression is truthy. 
 The `#unless` helper will render its section text only if its expression is falsy. An expression has the following restrictions:
 
 - Cannot contain the following characters: `[]{}`
-- Cannot contain assignment statements: = += -= *= /= |= &= ++ --
-- Cannot contain functino calls: identifier() identifier(args)
+- Cannot contain assignment statements: `= += -= *= /= |= &= ++ --`
+- Cannot contain function calls: `identifier()` or `identifier(args)`
 
 *the template*
 
@@ -299,7 +299,7 @@ Example:
 
       // If there was no path specified then we 
       // just render as usual (i.e. {{#with}}).
-      
+
       if (!path) return render(text);
 
       // The 'this' object is the current 'view' not the context,
