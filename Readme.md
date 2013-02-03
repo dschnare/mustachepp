@@ -242,12 +242,12 @@ The `#unless` helper will render its section text only if its expression is fals
 
     {{#unless numbers.length === 0}}
       <h1>Numbers</h1>
-      {{#each numbers}}{{@value}} {{/each}} 
+      {{#each numbers}}{{@value}}{{#if @index < numbers.length - 1}},{{/if}}{{/each}} 
     {{/unless}}
 
     {{#unless numbers.length < 0}}
       <h2>Numbers</h2>
-      {{#each numbers}}{{@value}} {{/each}} 
+      {{#each numbers}}{{@value}}{{#if @index < numbers.length - 1}},{{/if}}{{/each}} 
     {{/unless}}
 
 *the view*
@@ -259,10 +259,10 @@ The `#unless` helper will render its section text only if its expression is fals
 *the output*
 
     <h1>Numbers</h1>
-    1 2 3 4 5
+    1,2,3,4,5
 
     <h2>Numbers</h2>
-    1 2 3 4 5
+    1,2,3,4,5
 
 
 # API
