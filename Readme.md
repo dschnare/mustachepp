@@ -10,9 +10,9 @@ The need for such an extension arose when I had a need for a) accessing properti
 
 First thing's first, learn [Mustache](http://mustache.github.com/mustache.5.html). Mustache is a simple yet powerful logic-less templating syntax. Since Mustache++ is a superset of Mustache all techniques and knowledage transfer to Mustache++ one-to-one.
 
-Next, learn the extensions. Mustache++ provides several extensions to Mustache in a way that maintains 100% backward compatability.
+Next, learn the extensions. Mustache++ provides several extensions to Mustache in a way that maintains 100% backward compatability with Mustache.js.
 
-## Decendant and Root Context
+## Decendant Context and Root Context
 
 You can prefix your property paths with `:` to move down one context.
   
@@ -80,7 +80,7 @@ Prefixing your property path with `~` will move down to the root context.
     {{#father}}
       {{#son}}
         {{#friend}}
-          <p>{{:name}}'s friend is {{name}} and his father is {{~name}}</p>
+          <p>{{:name}}'s friend is {{name}} and his father is {{~father.name}}</p>
         {{/friend}}
       {{/son}}
     {{/father}}
@@ -159,7 +159,7 @@ For convenience, several `private` properties are available when rendering a val
 
 *the template*
 
-    {{#each numbers}}{{@index}}:{{.}} {{/each}}
+    {{#each numbers}}{{@index}}:{{.}},{{/each}}
 
 *the view*
 
@@ -169,13 +169,13 @@ For convenience, several `private` properties are available when rendering a val
 
 *the output*
 
-    0:1 1:2 2:3 3:4 4:5 
+    0:1,1:2,2:3,3:4,4:5, 
 
 Here's an example of iterating over the keys of an object.
 
 *the template*
 
-    {{#each options}}{{@key}}="{{@value}}"\n{{/each}}
+    {{#each options}}{{@key}}="{{@value}}"<br/>{{/each}}
 
 *the view*
 
@@ -188,8 +188,7 @@ Here's an example of iterating over the keys of an object.
 
 *the output*
 
-    mode="debug"
-    margins="10px 15px 5px 5px"
+    mode="debug"<br/>margins="10px 15px 5px 5px"<br/>
 
 
 
@@ -205,12 +204,12 @@ The `#if` helper will render its section text only if its expression is truthy. 
 
     {{#if numbers.length}}
       <h1>Numbers</h1>
-      {{#each numbers}}{{@value}} {{/each}}    
+      {{#each numbers}}{{@value}}{{#if @index < numbers.length - 1}},{{/if}}{{/each}}
     {{/if}}
 
     {{#if numbers.length > 0}}
       <h2>Numbers</h2>
-      {{#each numbers}}{{@value}} {{/each}}    
+      {{#each numbers}}{{@value}}{{#if @index < numbers.length - 1}},{{/if}}{{/each}}
     {{/if}}
 
 *the view*
@@ -222,10 +221,10 @@ The `#if` helper will render its section text only if its expression is truthy. 
 *the output*
 
     <h1>Numbers</h1>
-    1 2 3 4 5
+    1,2,3,4,5
 
     <h2>Numbers</h2>
-    1 2 3 4 5
+    1,2,3,4,5
 
 
 

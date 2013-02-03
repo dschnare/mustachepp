@@ -212,9 +212,9 @@
       if (/\[|\]/.test(expression)) throw new Error('Conditional expressions cannot contain square brackets.');
       if (/\{|\}/.test(expression)) throw new Error('Conditional expressions cannot contain curly braces.');
       if (/\b=\b|\+\+|\-\-|\+=|\-=|\*=|\/=|\|=|&=/.test(expression)) throw new Error('Conditional expressions cannot contain assignment expressions.');
-      expression = expression.replace(/[_$a-z][_$a-z0-9]*(?:\.[_$a-z][_$a-z0-9]*)*/ig, function ($0) {
+      expression = expression.replace(/[@_$a-z][_$a-z0-9]*(?:\.[_$a-z][_$a-z0-9]*)*/ig, function ($0) {
         return 'lookup("' + $0 + '")';
-      });
+      });      
 
       try {
         with (ctx) { condition = eval(expression); }
@@ -239,7 +239,7 @@
       if (/\[|\]/.test(expression)) throw new Error('Conditional expressions cannot contain square brackets.');
       if (/\{|\}/.test(expression)) throw new Error('Conditional expressions cannot contain curly braces.');
       if (/\b=\b|\+\+|\-\-|\+=|\-=|\*=|\/=|\|=|&=/.test(expression)) throw new Error('Conditional expressions cannot contain assignment expressions.');
-      expression = expression.replace(/[_$a-z][_$a-z0-9]*(?:\.[_$a-z][_$a-z0-9]*)*/ig, function ($0) {
+      expression = expression.replace(/[@_$a-z][_$a-z0-9]*(?:\.[_$a-z][_$a-z0-9]*)*/ig, function ($0) {
         return 'lookup("' + $0 + '")';
       });
 
@@ -272,25 +272,18 @@
         };
       },
       create: function (o) {
-        var F, type;
-
-        F = function () {}; 
-        type = typeof o;    
+        var F = function () {};        
 
         if (o === undefined || o === null) o = {};    
 
-        // o is a literal.
-        switch (type) {
-          case 'string':
-            o = new String(o);
-            break;
-          case 'number':
-            o = new Number(o);
-            break;
-          case 'boolean':
-            o = new Boolean(o);
-            break;
-        }
+        // o is a literal. 
+        if (/string|number|boolean/.test(typeof o)) {
+          o = (function (v) {
+            return {
+              toString: function () { return v + ''; }
+            };
+          }(o));
+        }        
         
         F.prototype = o;
         o = new F();
@@ -304,6 +297,8 @@
         args = ([]).slice.call(arguments, 1);
         for (i = 0, len = args.length; i < len; i += 1) {
           arg = args[i];
+
+          if (arg === 'constructor') continue;
 
           for (k in arg) {
             if (arg.hasOwnProperty(k)) {
