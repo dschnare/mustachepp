@@ -12,7 +12,7 @@ Mustache++ modifies the existing Mustache object in-place so the same API you're
 
 First thing's first, learn [Mustache](http://mustache.github.com/mustache.5.html). Mustache is a simple yet powerful logic-less templating syntax. Since Mustache++ is a superset of Mustache all techniques and knowledage transfer to Mustache++ one-to-one.
 
-Next, learn the extensions. Mustache++ provides several extensions to Mustache in a way that maintains 100% backward compatability with Mustache.js.
+Next, learn the extensions. Mustache++ provides several extensions to Mustache.js in a way that maintains 100% backward compatability with the Mustache.js implementation.
 
 ## Decendant Context and Root Context
 
