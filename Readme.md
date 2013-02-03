@@ -109,7 +109,7 @@ Similar to Handlebars.js block helpers, section helpers offer a way for you to a
 
 ### {{#with path}}
 
-The `#with` will render its section text in the context of the specified path.
+The `#with` helper will render its section text in the context of the specified path.
 
 *the template*
 
