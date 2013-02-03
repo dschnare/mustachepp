@@ -133,7 +133,7 @@ Note that the `#with` section helper will not iterate over the items of an `Arra
 
 *the template*
 
-    {{#with array}}
+    {{#with numbers}}
       The result: {{.}}
     {{/with}}
 
