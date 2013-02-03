@@ -1,3 +1,5 @@
+**Tested with Mustache.js 0.7.2**
+
 # Overview
 
 Mustache++ is a natural extension to Mustache.js that adds capabilities similar to Handlebars.js while maintaining full compatibility with the Mustache specification.
