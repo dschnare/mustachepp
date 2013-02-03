@@ -1,6 +1,6 @@
 {
   "name": "mustachepp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": ["mustache", "handlebars", "templating", "javascript"],
   "author": {
     "name": "Darren Schnare",
