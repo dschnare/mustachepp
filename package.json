@@ -1,0 +1,13 @@
+{
+  "name": "mustachepp",
+  "version": "0.0.1",
+  "keywords": ["mustache", "handlebars", "templating", "javascript"],
+  "author": {
+    "name": "Darren Schnare",
+    "email": "schnare.d@gmail.com"
+  },
+  "main": "./mustchepp.js",
+  "dependencies": {    
+    "mustache": "*"
+  }
+}
