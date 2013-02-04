@@ -6,6 +6,10 @@
     "name": "Darren Schnare",
     "email": "schnare.d@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dschnare/mustachepp.git"
+  },
   "main": "./mustchepp.js",
   "devDependencies": {    
     "mustache": "0.7.2",
