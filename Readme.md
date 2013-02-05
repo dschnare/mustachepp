@@ -2,7 +2,7 @@
 
 # Overview
 
-Mustache++ is a natural extension to Mustache.js that adds capabilities similar to Handlebars.js while maintaining full compatibility with the Mustache specification.
+Mustache++ is a natural extension to Mustache.js that adds capabilities similar to Handlebars.js while maintaining full backward compatibility with Mustache.js.
 
 The need for such an extension arose when I had a need for a) accessing properties lower in the context stack (i.e. at the root) and b) iterating over the keys of an object and being able to access the key name and value of said key. Naturally I thought Handlebars.js would be a great fit and solve my problem, this didn't turn out to be the case. Handlebars.js only half solved iterating over the keys of an object (key names are not accessible) and the concept of context in Handlebars.js does not follow the Mustache specification so you can't access properties lower in the context stack. Mustache++ solves these issues and does it in about 330 lines of code to boot.
 
