@@ -61,7 +61,7 @@ describe('Mustache', function () {
         numbers: [1, 2, 3, 4, 5]
       };
 
-      var template = '{{#with numbers}}The result: {{.}}{{/with}}';
+      var template = '{{#with numbers}}The result: {{@value}}{{/with}}';
       var result = Mustachepp.render(template, view);
       expect(result).toBe('The result: 1,2,3,4,5');
     });
