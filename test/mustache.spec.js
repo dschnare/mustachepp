@@ -5,7 +5,7 @@ var Mustachepp = require('../mustachepp');
 
 // These are the known tests that Mustache.js 0.7.2 fails.
 var knownToFailInMustacheJS = {
-  "~lambdas.json": "any",
+  "~lambdas.json": ["Interpolation", "Interpolation - Multiple Calls", "Escaping", "Interpolation - Expansion", "Interpolation - Alternate Delimiters", "Section - Expansion", "Section - Alternate Delimiters"],
   "comments.json": ["Standalone Without Newline"],
   "delimiters.json": ["Standalone Without Newline"],
   "inverted.json": ["Standalone Without Newline"],
@@ -25,8 +25,11 @@ describe('Mustache specification', function () {
       var spec = JSON.parse(text);
       
       spec.tests.forEach(function (test) {
-        if (knownToFailInMustacheJS[basename] && knownToFailInMustacheJS[basename].indexOf(test.name) < 0) {
+        if (!knownToFailInMustacheJS[basename] || knownToFailInMustacheJS[basename].indexOf(test.name) < 0) {
           it(basename + ':' + test.name + ':' + test.desc, function () {
+            if (test.data.lambda) {
+              test.data.lambda = Function('return function(){return ' + test.data.lambda.js + ';}')();              
+            }  
             var result = Mustachepp.render(test.template, test.data, test.partials || {});
             expect(result).toBe(test.expected);
           });        

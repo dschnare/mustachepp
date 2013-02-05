@@ -18,9 +18,6 @@
   /// Module Factory ///
 
   factory = function (mustache) {
-    var helpers;
-
-    if (!mustache) throw new Error('Mustache does not exist.');
     mustache.util = util;
     helpers = {};
 
@@ -39,12 +36,15 @@
         this._stack.push(ctx);
       }
       return ctx;
+    var helpers;
+
+    if (!mustache) throw new Error('Mustache does not exist.');
     });    
     mustache.Context.prototype.push = util.override(mustache.Context.prototype.push, function (base, view) {      
       var ctx = base.call(this, view);
       mustache.Context._stack.push(ctx);
       return ctx;
-    });
+    });  
 
     // :numbers = move down the stack one level
     // ::numbers = move down the stack two levels
